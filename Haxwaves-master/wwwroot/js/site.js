@@ -24,4 +24,5 @@ function toggleReadMore() {
 //        var menu = dropdown.querySelector('.dropdown-menu');
 //       menu.classList.remove('show');
 //    });
-//});
+//});<script>
+// Function to update the active navigation link

@@ -1,0 +1,9 @@
+﻿CREATE TABLE Contacts (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    FullName NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL,
+    PhoneNumber NVARCHAR(20),
+    Subject NVARCHAR(200) NOT NULL,
+    Message NVARCHAR(MAX) NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
