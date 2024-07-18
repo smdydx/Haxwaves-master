@@ -40,3 +40,22 @@ function myMap() {
     };
     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 }
+
+
+$(document).ready(function () {
+    $(".client_owl-carousel").owlCarousel({
+        loop: true, // Enable loop
+        margin: 15, // Margin between items
+        responsive: {
+            0: {
+                items: 1 // Number of items to display on mobile
+            },
+            600: {
+                items: 2 // Number of items to display on tablets
+            },
+            1000: {
+                items: 3 // Number of items to display on desktops
+            }
+        }
+    });
+});
