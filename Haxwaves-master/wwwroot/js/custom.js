@@ -8,29 +8,7 @@ function getYear() {
 getYear();
 
 // client section owl carousel
-$(".client_owl-carousel").owlCarousel({
-    loop: true,
-    margin: 20,
-    dots: false,
-    nav: true,
-    autoplay: true,
-    autoplayHoverPause: true,
-    navText: [
-        '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-        '<i class="fa fa-angle-right" aria-hidden="true"></i>'
-    ],
-    responsive: {
-        0: {
-            items: 1
-        },
-        600: {
-            items: 2
-        },
-        1000: {
-            items: 2
-        }
-    }
-});
+
 
 /** google_map js **/
 function myMap() {
@@ -42,20 +20,28 @@ function myMap() {
 }
 
 
+
+
 $(document).ready(function () {
-    $(".client_owl-carousel").owlCarousel({
-        loop: true, // Enable loop
-        margin: 15, // Margin between items
-        responsive: {
-            0: {
-                items: 1 // Number of items to display on mobile
-            },
-            600: {
-                items: 2 // Number of items to display on tablets
-            },
-            1000: {
-                items: 3 // Number of items to display on desktops
+    $('.customer-logos').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        arrows: false,
+        dots: false,
+        pauseOnHover: false,
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 4
             }
-        }
+        }, {
+            breakpoint: 520,
+            settings: {
+                slidesToShow: 3
+            }
+        }]
     });
 });
+

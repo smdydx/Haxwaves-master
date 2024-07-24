@@ -8,6 +8,7 @@ namespace Haxwaves_master.Controllers
 
     public class HomeController : Controller
     {
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -41,11 +42,28 @@ namespace Haxwaves_master.Controllers
             return View();
         }
 
+        
         public IActionResult Contact()
         {
-            return View();
+            var createDb = new Contact();
+            createDb.OnGet(); // Assuming OnGet() retrieves data needed for creating a client
+            return View(createDb);
         }
 
+        [HttpPost]
+        public IActionResult Contact(Contact createDb)
+        {
+            createDb.OnPost(HttpContext);
+
+            if (!string.IsNullOrEmpty(createDb.ErrorMessage))
+            {
+                ModelState.AddModelError("", createDb.ErrorMessage);
+                return View(createDb); // Return the view with errors
+            }
+
+            TempData["SuccessMessage"] = createDb.SuccessMessage;
+            return RedirectToAction("Client"); // Redirect to client list after successful creation
+        }
 
 
 
@@ -56,5 +74,6 @@ namespace Haxwaves_master.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
