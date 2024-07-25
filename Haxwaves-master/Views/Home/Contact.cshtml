@@ -1,61 +1,136 @@
 ﻿@model Haxwaves_master.Models.Contact
 
-<h2>New Client</h2>
+<div class="container-fluid home" style="box-shadow: inset -1px -1px 20px 0px rgb(175, 19, 19);">
+
+    <div class="row">
+        <!-- Left side panel -->
+        <div class="col-md-6 details-panel" style="margin-top: 130px;">
+            <div class="p-4 text-white">
+                <h4>Address</h4>
+                <p>Mada Center 8th floor, 379 Hudson St, New York, NY 10018 US</p>
+                <h4>Lets Talk</h4>
+                <p>+1 800 1236879</p>
+                <h4>General Support</h4>
+                <p>contact@example.com</p>
+            </div>
+        </div>
+
+        <!-- Right side form -->
+        <div class="col-md-6" style="margin-top: 90px; color: skyblue;">
+            <h2>Send Us A Message</h2>
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            <form method="post" class="custom-background p-3">
+                <div class="side-panel"></div>
+                <div class="mb-3">
+                    <label for="fullName">Tell Us Your Name *</label>
+                    <input type="text" class="form-control" asp-for="ClientInfo.FullName" placeholder="Full name">
+                    <span class="text-danger">@Html.ValidationMessageFor(m => m.ClientInfo.FullName)</span>
+                </div>
+                <div class="mb-3">
+                    <label for="email">Enter Your Email *</label>
+                    <input type="email" class="form-control" asp-for="ClientInfo.Email" placeholder="Eg. example@mail.com">
+                    <span class="text-danger">@Html.ValidationMessageFor(m => m.ClientInfo.Email)</span>
+                </div>
+                <div class="mb-3">
+                    <label for="phone">Enter Phone Number</label>
+                    <input type="text" class="form-control" asp-for="ClientInfo.PhoneNumber" placeholder="Eg. +1 800 000000">
+                    <span class="text-danger">@Html.ValidationMessageFor(m => m.ClientInfo.PhoneNumber)</span>
+                </div>
+                <div class="mb-3">
+                    <label for="subject">Subject</label>
+                    <input type="text" class="form-control" asp-for="ClientInfo.Subject">
+                    <span class="text-danger">@Html.ValidationMessageFor(m => m.ClientInfo.Subject)</span>
+                </div>
+                <div class="mb-3">
+                    <label for="message">Message *</label>
+                    <textarea class="form-control" asp-for="ClientInfo.Message" rows="4" placeholder="Write us a message"></textarea>
+                    <span class="text-danger">@Html.ValidationMessageFor(m => m.ClientInfo.Message)</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">SEND MESSAGE</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <style>
+    /* Custom Background Style */
     .custom-background {
-        color: white;
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(5px);
         padding: 20px;
         border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Hover Animation */
+    .custom-background/* :hover */ {
+        box-shadow: 0 4px 8px rgb(133 19 19 / 96%);
+        transform: scale(1.02);
+    }
+
+    /* Animation on form load */
+    /* .fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    } */
+
+   /*  .custom-background {
+        animation: fadeIn 1s ease-in-out;
+    } */
+
+    /* Side Panel Style */
+    /* .side-panel {
+        position: absolute;
+        top: 0;
+        right: -40px;
+        width: 30px;
+        height: 100%;
+        background: #007bff;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        transition: all 0.3s ease-in-out;
+    } */
+
+    /* Side Panel Animation */
+    /* .custom-background:hover .side-panel {
+        right: 0;
+    }
+ */
+    /* Input Focus Style */
+    /* .form-control:focus {
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        border-color: #007bff;
+    } */
+
+    /* Home Background Image */
+    .home {
+        background-image:url('/images/drop.jpg'); /* Add your background image URL here */
+        background-size: cover;
+        background-position: center;
+        
+        
+    }
+
+    .details-panel {
+        background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+        padding: 20px;
+        border-radius: 10px;
     }
 </style>
-
-<form method="post" class="custom-background p-3">
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Name</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" asp-for="ClientInfo.FullName">
-            <span class="text-danger">@Html.ValidationMessageFor(m => m.ClientInfo.FullName)</span>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Email</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" asp-for="ClientInfo.Email">
-            <span class="text-danger">@Html.ValidationMessageFor(m => m.ClientInfo.Email)</span>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Phone</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" asp-for="ClientInfo.PhoneNumber">
-            <span class="text-danger">@Html.ValidationMessageFor(m => m.ClientInfo.PhoneNumber)</span>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Subject</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" asp-for="ClientInfo.Subject">
-            <span class="text-danger">@Html.ValidationMessageFor(m => m.ClientInfo.Subject)</span>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Message</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" asp-for="ClientInfo.Message">
-            <span class="text-danger">@Html.ValidationMessageFor(m => m.ClientInfo.Message)</span>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-3">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-        <div class="col-sm-3">
-            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-        </div>
-    </div>
-</form>
